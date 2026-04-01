@@ -1,0 +1,22 @@
+@if(newDialogVisible) {
+<app-add-new-task [userId]="taskUser" (closeDialog)="closeNewDialog($event)"></app-add-new-task>
+}
+<section id="tasks">
+  <header>
+    <h2>{{ userName }}'s Tasks</h2>
+    <menu>
+      <button (click)="addTask()">Add Task</button>
+    </menu>
+  </header>
+  @if (filteredTasks.length > 0) {
+  <ul>
+    @for (task of filteredTasks; track task.id) {
+    <li>
+      <app-individual-task [addedTask]="task"></app-individual-task>
+    </li>
+    }
+  </ul>
+  } @else {
+  <p>No tasks added yet.</p>
+  }
+</section>
